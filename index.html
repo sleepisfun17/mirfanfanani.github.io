@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -18,11 +19,34 @@
             <a href="#home" class="font-bold text-primary block py-6">shofieazhaari</a>
           </div>
           <div class="flex items-center px-4">
-            <button id="hamburger" name="hamburger" type="button" class="block absolute right-4">
+            <button id="hamburger" name="hamburger" type="button" class="block absolute right-4 lg:hidden">
               <span class="hamburger-line transition duration-500 ease-in-out origin-top-left"></span>
               <span class="hamburger-line transition duration-500 ease-in-out"></span>
               <span class="hamburger-line transition duration-500 ease-in-out origin-bottom-left"></span>
             </button>
+
+            <nav id="nav-menu" class="hidden absolute py-5 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none">
+              <ul class="block lg:flex">
+                <li class="group">
+                  <a href="#home" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Home</a>
+                </li>
+                <li class="group">
+                  <a href="#about" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">About Me</a>
+                </li>
+                <li class="group">
+                  <a href="#portfolio" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Portfolio</a>
+                </li>
+                <li class="group">
+                  <a href="#clients" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Clients</a>
+                </li>
+                <li class="group">
+                  <a href="#blog" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Blog</a>
+                </li>
+                <li class="group">
+                  <a href="#contact" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Contact</a>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
@@ -41,7 +65,7 @@
             <h2 class="font-medium text-secondary text-lg mb-5">Web Developer | <span class="text-dark">Nub Gamer</span></h2>
             <p class="font-medium text-secondary mb-10 leading-relaxed">You want to play? Let's <span class="text-dark font-bold">PLAY.</span></p>
 
-            <a href="#" class="text-base font-semibold text-white bg-primary px-8 py-3 rounded-lg hover:shadow-lg hover:opacity-75 transition duration-300 ease-in-out">Contact Me!</a>
+            <a href="#" class="text-base font-semibold text-white bg-primary px-8 py-3 rounded-lg hover:shadow-lg hover:opacity-80 transition duration-300 ease-in-out">Contact Me!</a>
           </div>
 
           <div class="w-full self-end px-4 lg:w-1/2">
@@ -50,7 +74,7 @@
               <span class="absolute bottom-0 -z-10 left-1/2 -translate-x-1/2 md:scale-125">
                 <svg width="550" height="550" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                   <path
-                    fill="#F43F5E"
+                    fill="#F472B6"
                     d="M46.3,-65.1C59.4,-54.1,69.2,-39.9,74.4,-24.2C79.5,-8.4,79.9,8.8,74,23.1C68.1,37.4,55.8,48.7,42.4,60.7C29,72.7,14.5,85.5,2.2,82.5C-10.1,79.5,-20.3,60.7,-35.3,49.2C-50.3,37.7,-70.1,33.4,-75.7,23C-81.3,12.5,-72.7,-4.2,-65.2,-19.4C-57.8,-34.6,-51.5,-48.3,-40.8,-60.1C-30.1,-71.9,-15,-81.7,0.8,-82.7C16.5,-83.8,33.1,-76,46.3,-65.1Z"
                     transform="translate(100 100) scale(1.1)"
                   />
@@ -126,6 +150,61 @@
       </div>
     </section>
     <!-- End of About Section -->
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="pt-36 pb-16 bg-slate-100">
+      <div class="container">
+        <div class="w-full px-4">
+          <div class="max-w-xl mx-auto text-center mb-16">
+            <h4 class="font-semibold text-lg text-primary mb-2">Portfolio</h4>
+            <h2 class="font-bold text-dark text-3xl mb-4">Project</h2>
+            <p class="font-medium text-md text-secondary">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo adipisci nam repudiandae provident excepturi ducimus illum maxime non recusandae in obcaecati voluptatibus velit quas ab asperiores, saepe repellat dolore numquam.
+            </p>
+          </div>
+
+          <div class="w-full px-4 flex flex-wrap justify-center xl:w-11/12 xl:mx-auto">
+            <div class="mb-12 p-4 md:w-1/2">
+              <div class="rounded-md shadow-md overflow-hidden">
+                <img src="dist/img/Portfolio/nanotown4.jpg" alt="" width="w-full" />
+              </div>
+              <h3 class="font-semibold text-xl text-dark mt-5 mb-3">Nano Town 4 Landing Page</h3>
+              <p class="font-medium text-base text-secondary">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse animi rem accusantium harum, facere voluptas! Quidem velit distinctio veritatis harum. Perspiciatis, deleniti incidunt? Quidem quia, in odio qui dicta illum!
+              </p>
+            </div>
+            <div class="mb-12 p-4 md:w-1/2">
+              <div class="rounded-md shadow-md overflow-hidden">
+                <img src="dist/img/Portfolio/nanotown4.jpg" alt="" width="w-full" />
+              </div>
+              <h3 class="font-semibold text-xl text-dark mt-5 mb-3">Nano Town 4 Landing Page</h3>
+              <p class="font-medium text-base text-secondary">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse animi rem accusantium harum, facere voluptas! Quidem velit distinctio veritatis harum. Perspiciatis, deleniti incidunt? Quidem quia, in odio qui dicta illum!
+              </p>
+            </div>
+            <div class="mb-12 p-4 md:w-1/2">
+              <div class="rounded-md shadow-md overflow-hidden">
+                <img src="dist/img/Portfolio/nanotown4.jpg" alt="" width="w-full" />
+              </div>
+              <h3 class="font-semibold text-xl text-dark mt-5 mb-3">Nano Town 4 Landing Page</h3>
+              <p class="font-medium text-base text-secondary">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse animi rem accusantium harum, facere voluptas! Quidem velit distinctio veritatis harum. Perspiciatis, deleniti incidunt? Quidem quia, in odio qui dicta illum!
+              </p>
+            </div>
+            <div class="mb-12 p-4 md:w-1/2">
+              <div class="rounded-md shadow-md overflow-hidden">
+                <img src="dist/img/Portfolio/nanotown4.jpg" alt="" width="w-full" />
+              </div>
+              <h3 class="font-semibold text-xl text-dark mt-5 mb-3">Nano Town 4 Landing Page</h3>
+              <p class="font-medium text-base text-secondary">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse animi rem accusantium harum, facere voluptas! Quidem velit distinctio veritatis harum. Perspiciatis, deleniti incidunt? Quidem quia, in odio qui dicta illum!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End of Portfolio Section -->
 
     <script src="dist/js/script.js"></script>
   </body>
