@@ -16,41 +16,69 @@
     <!-- Icon Tab -->
     <link rel="icon" href="dist/img/Icon/newpeng.png" type="image/gif" sizes="16x16" />
     <link href="dist/output.css?v=17" rel="stylesheet" />
+
+    <script>
+      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
   </head>
   <body>
     <!-- Navbar Section -->
-    <header class="bg-transparent absolute top-0 left-0 w-full flex items-center z-10">
+    <header class="absolute top-0 left-0 z-10 flex w-full items-center bg-transparent">
       <div class="container">
-        <div class="flex items-center justify-between relative">
+        <div class="relative flex items-center justify-between">
           <div class="px-4">
-            <a href="#home" class="font-bold text-lg text-primary block py-6 hover:font-extrabold hover:scale-105 transition-all">M Irfan Fanani</a>
+            <a href="#home" class="block py-6 text-lg font-bold text-primary transition-all hover:scale-105 hover:font-extrabold">M Irfan Fanani</a>
           </div>
           <div class="flex items-center px-4">
-            <button id="hamburger" name="hamburger" type="button" class="block absolute right-4 lg:hidden">
-              <span class="hamburger-line transition duration-500 ease-in-out origin-top-left"></span>
+            <button id="hamburger" name="hamburger" type="button" class="absolute right-4 block lg:hidden">
+              <span class="hamburger-line origin-top-left transition duration-500 ease-in-out"></span>
               <span class="hamburger-line transition duration-500 ease-in-out"></span>
-              <span class="hamburger-line transition duration-500 ease-in-out origin-bottom-left"></span>
+              <span class="hamburger-line origin-bottom-left transition duration-500 ease-in-out"></span>
             </button>
 
-            <nav id="nav-menu" class="hidden absolute py-5 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none">
+            <nav
+              id="nav-menu"
+              class="absolute right-4 top-full hidden w-full max-w-[250px] rounded-lg bg-white py-5 shadow-lg dark:bg-slate-900 dark:shadow-slate-600 lg:static lg:block lg:max-w-full lg:rounded-none lg:bg-transparent lg:shadow-none lg:dark:bg-transparent"
+            >
               <ul class="block lg:flex">
                 <li class="group">
-                  <a href="#home" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary group-hover:font-semibold group-hover:scale-105 transition-all">Home</a>
+                  <a href="#home" class="mx-8 flex py-2 text-base text-dark transition-all group-hover:scale-105 group-hover:font-semibold group-hover:text-primary dark:text-white">Home</a>
                 </li>
                 <li class="group">
-                  <a href="#about" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary group-hover:font-semibold group-hover:scale-105 transition-all">About Me</a>
+                  <a href="#about" class="mx-8 flex py-2 text-base text-dark transition-all group-hover:scale-105 group-hover:font-semibold group-hover:text-primary dark:text-white">About Me</a>
                 </li>
                 <li class="group">
-                  <a href="#portfolio" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary group-hover:font-semibold group-hover:scale-105 transition-all">Portfolio</a>
+                  <a href="#portfolio" class="mx-8 flex py-2 text-base text-dark transition-all group-hover:scale-105 group-hover:font-semibold group-hover:text-primary dark:text-white">Portfolio</a>
                 </li>
                 <li class="group">
-                  <a href="#clients" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary group-hover:font-semibold group-hover:scale-105 transition-all">Clients</a>
+                  <a href="#clients" class="mx-8 flex py-2 text-base text-dark transition-all group-hover:scale-105 group-hover:font-semibold group-hover:text-primary dark:text-white">Clients</a>
                 </li>
                 <li class="group">
-                  <a href="#blog" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary group-hover:font-semibold group-hover:scale-105 transition-all">Blog</a>
+                  <a href="#blog" class="mx-8 flex py-2 text-base text-dark transition-all group-hover:scale-105 group-hover:font-semibold group-hover:text-primary dark:text-white">Blog</a>
                 </li>
                 <li class="group">
-                  <a href="#contact" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary group-hover:font-semibold group-hover:scale-105 transition-all">Contact</a>
+                  <a href="#contact" class="mx-8 flex py-2 text-base text-dark transition-all group-hover:scale-105 group-hover:font-semibold group-hover:text-primary dark:text-white">Contact</a>
+                </li>
+                <li class="flex">
+                  <button
+                    id="theme-toggle"
+                    type="button"
+                    class="mx-auto rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                  >
+                    <svg id="theme-toggle-dark-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                  </button>
                 </li>
               </ul>
             </nav>
@@ -61,25 +89,25 @@
     <!-- End of Navbar Section -->
 
     <!-- Hero Section -->
-    <section id="home" class="pt-36 lg:pt-24">
+    <section id="home" class="pt-36 dark:bg-slate-900 lg:pt-24">
       <div class="container">
         <div class="flex flex-wrap">
           <div class="w-full self-center px-4 lg:w-1/2">
             <h1 class="text-base font-semibold text-primary md:text-xl">
               Hallo👋, saya
-              <span class="block font-bold text-dark text-4xl mt-1 lg:text-5xl hover:scale-105 transition duration-500 hover:translate-x-3">M Irfan Fanani</span>
+              <span class="mt-1 block text-4xl font-bold text-dark transition duration-500 hover:translate-x-3 hover:scale-105 dark:text-white lg:text-5xl">M Irfan Fanani</span>
             </h1>
-            <h2 class="font-medium text-secondary text-lg mb-5">Web Developer | <span class="text-dark">Nub Gamer</span></h2>
-            <p class="font-medium text-secondary mb-10 leading-relaxed">You want to play? Let's <span class="text-dark font-bold">PLAY.</span></p>
+            <h2 class="mb-5 text-lg font-medium text-secondary">Web Developer | <span class="text-dark dark:text-white">Nub Gamer</span></h2>
+            <p class="mb-10 font-medium leading-relaxed text-secondary">You want to play? Let's <span class="font-bold text-dark dark:text-white">PLAY.</span></p>
 
-            <a href="#" class="text-base font-semibold text-white bg-primary px-8 py-3 rounded-lg hover:shadow-lg hover:opacity-80 transition duration-300 ease-in-out">Contact Me!</a>
+            <a href="#" class="rounded-lg bg-primary px-8 py-3 text-base font-semibold text-white transition duration-300 ease-in-out hover:opacity-80 hover:shadow-lg">Contact Me!</a>
           </div>
 
           <div class="w-full self-end px-4 lg:w-1/2">
-            <div class="relative mt-10 lg:mt-9 lg:right-0">
-              <img src="dist/img/Icon/pnegjr-removebg-preview.png" alt="hehee🥺" class="max-w-full mx-auto rounded-full hover:scale-110 transition duration-300" />
-              <span class="absolute bottom-0 -z-10 left-1/2 -translate-x-1/2 md:scale-125">
-                <svg width="500" height="500" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <div class="relative mt-10 lg:right-0 lg:mt-9">
+              <img src="dist/img/Icon/pnegjr-removebg-preview.png" alt="hehee🥺" class="relative z-10 mx-auto max-w-full rounded-full transition duration-300 hover:scale-110" />
+              <span class="absolute bottom-0 left-1/2 -translate-x-1/2">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="h-full w-[300px] md:h-[500px] md:w-[500px]">
                   <!-- CUSTOMIZE COLOR -->
                   <path
                     fill="#6366f1"
@@ -96,24 +124,24 @@
     <!-- End of Hero Section -->
 
     <!-- About Section -->
-    <section id="about" class="pt-36 pb-32">
+    <section id="about" class="pt-24 pb-20 dark:bg-slate-900">
       <div class="container">
         <div class="flex flex-wrap">
-          <div class="w-full self-center px-4 mb-10 lg:w-1/2">
-            <h4 class="font-bold uppercase text-primary text-lg mb-3">About Me</h4>
-            <h2 class="font-bold text-dark text-3xl mb-5 max-w-xl lg:text-4xl">成りたい者になれるのは、成ろうとした者だけ</h2>
-            <p class="font-medium text-base text-secondary max-w-xl">
+          <div class="mb-10 w-full self-center px-4 lg:w-1/2">
+            <h4 class="mb-3 text-lg font-bold uppercase text-primary">About Me</h4>
+            <h2 class="mb-5 max-w-xl text-3xl font-bold text-dark dark:text-white lg:text-4xl">成りたい者になれるのは、成ろうとした者だけ</h2>
+            <p class="max-w-xl text-base font-medium text-secondary">
               Naritai mono ni nareru no wa, narou to shita mono dake, Only those who want to become can become what they want to become. <br />
               "If you're not a good shot today, don't worry. There are other ways to be useful." - Sova <br />
               "I am my own master." - Kayn
             </p>
           </div>
           <div class="w-full px-4 lg:w-1/2">
-            <h3 class="font-semibold text-dark text-2xl mb-4 lg:pt-10 lg:text-3xl">Connect with Me!</h3>
-            <p class="font-medium text-base text-secondary mb-6">Free! 🐧 to connect.</p>
+            <h3 class="mb-4 text-2xl font-semibold text-dark dark:text-white lg:pt-10 lg:text-3xl">Connect with Me!</h3>
+            <p class="mb-6 text-base font-medium text-secondary">Free! 🐧 to connect.</p>
             <div class="flex items-center">
               <!-- Youtube -->
-              <a href="https://youtube.com" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 hover:border-primary hover:bg-primary hover:text-white text-primary">
+              <a href="https://youtube.com" target="_blank" class="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-primary hover:border-primary hover:bg-primary hover:text-white">
                 <svg role="img" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current">
                   <title>YouTube</title>
                   <path
@@ -123,7 +151,7 @@
               </a>
 
               <!-- Instagram -->
-              <a href="https://instagram.com/sleepisfun17" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 hover:border-primary hover:bg-primary hover:text-white text-primary">
+              <a href="https://instagram.com/sleepisfun17" target="_blank" class="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-primary hover:border-primary hover:bg-primary hover:text-white">
                 <svg role="img" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current hover:scale-110">
                   <title>Instagram</title>
                   <path
@@ -133,7 +161,7 @@
               </a>
 
               <!-- Twitter -->
-              <a href="https://twitter.com/sleepisfun17" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 hover:border-primary hover:bg-primary hover:text-white text-primary">
+              <a href="https://twitter.com/sleepisfun17" target="_blank" class="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-primary hover:border-primary hover:bg-primary hover:text-white">
                 <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" class="fill-current">
                   <title>Twitter</title>
                   <path
@@ -143,7 +171,7 @@
               </a>
 
               <!-- Discord -->
-              <a href="https://discord.com" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 hover:border-primary hover:bg-primary hover:text-white text-primary">
+              <a href="https://discord.com" target="_blank" class="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-primary hover:border-primary hover:bg-primary hover:text-white">
                 <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" class="fill-current">
                   <title>Discord</title>
                   <path
@@ -156,7 +184,7 @@
               <a
                 href="https://www.linkedin.com/in/mirfanfanani/"
                 target="_blank"
-                class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 hover:border-primary hover:bg-primary hover:text-white text-primary"
+                class="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-primary hover:border-primary hover:bg-primary hover:text-white"
               >
                 <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" class="fill-current">
                   <title>LinkedIn</title>
@@ -170,7 +198,7 @@
               <a
                 href="https://steamcommunity.com/id/sleepisfun17/"
                 target="_blank"
-                class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 hover:border-primary hover:bg-primary hover:text-white text-primary"
+                class="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-primary hover:border-primary hover:bg-primary hover:text-white"
               >
                 <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" class="fill-current">
                   <title>Steam</title>
@@ -187,87 +215,87 @@
     <!-- End of About Section -->
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="pt-36 pb-16 bg-slate-100">
+    <section id="portfolio" class="bg-slate-100 pt-24 pb-16 dark:bg-slate-800">
       <div class="container">
         <div class="w-full px-4">
-          <div class="max-w-xl mx-auto text-center mb-16">
-            <h4 class="font-semibold text-lg text-primary mb-2">Portfolio</h4>
-            <h2 class="font-bold text-dark text-3xl mb-4 sm:text-4xl lg:text-5xl">Project</h2>
-            <p class="font-medium text-md text-secondary md:text-lg">Here are some of the projects I've worked on.</p>
+          <div class="mx-auto mb-16 max-w-xl text-center">
+            <h4 class="mb-2 text-lg font-semibold text-primary">Portfolio</h4>
+            <h2 class="mb-4 text-3xl font-bold text-dark dark:text-white sm:text-4xl lg:text-5xl">Project</h2>
+            <p class="text-md font-medium text-secondary md:text-lg">Here are some of the projects I've worked on.</p>
           </div>
 
-          <div class="w-full px-4 flex flex-wrap justify-center xl:w-full xl:mx-auto">
+          <div class="flex w-full flex-wrap justify-center px-4 xl:mx-auto xl:w-full">
             <!-- Portfolio Content -->
-            <div class="mb-12 p-4 md:w-1/2 hover:scale-105 transition duration-300">
+            <div class="mb-12 p-4 transition duration-300 hover:scale-105 md:w-1/2">
               <a href="https://nanocenter.id/" target="_blank">
-                <div class="rounded-md shadow-md overflow-hidden">
+                <div class="overflow-hidden rounded-md shadow-md">
                   <img src="dist/img/Portfolio/nanocenter.id.jpg" alt="" width="w-full" />
                 </div>
-                <h3 class="font-semibold text-xl text-dark mt-5 mb-3 hover:text-primary">Nano Center Indonesia Company Profile Website</h3>
+                <h3 class="mt-5 mb-3 text-xl font-semibold text-dark hover:text-primary dark:text-white">Nano Center Indonesia Company Profile Website</h3>
               </a>
-              <p class="font-medium text-base text-secondary">Website perusahaan untuk Nano Center Indonesia - Nanotech Indonesia Global</p>
+              <p class="text-base font-medium text-secondary">Website perusahaan untuk Nano Center Indonesia - Nanotech Indonesia Global</p>
             </div>
 
-            <div class="mb-12 p-4 md:w-1/2 hover:scale-105 transition duration-300">
+            <div class="mb-12 p-4 transition duration-300 hover:scale-105 md:w-1/2">
               <a href="https://nanoland.id/nanotown4-landingpage" target="_blank">
-                <div class="rounded-md shadow-md overflow-hidden">
+                <div class="overflow-hidden rounded-md shadow-md">
                   <img src="dist/img/Portfolio/nanotown4.jpg" alt="" width="w-full" />
                 </div>
-                <h3 class="font-semibold text-xl text-dark mt-5 mb-3 hover:text-primary">Nano Town 4 Landing Page</h3>
+                <h3 class="mt-5 mb-3 text-xl font-semibold text-dark hover:text-primary dark:text-white">Nano Town 4 Landing Page</h3>
               </a>
-              <p class="font-medium text-base text-secondary">Landing page untuk Nano Town 4, proyek cluster ke-4 dari Nanoland setelah Nano Town 3 (Thorium Residence).</p>
+              <p class="text-base font-medium text-secondary">Landing page untuk Nano Town 4, proyek cluster ke-4 dari Nanoland setelah Nano Town 3 (Thorium Residence).</p>
             </div>
 
-            <div class="mb-12 p-4 md:w-1/2 hover:scale-105 transition duration-300">
+            <div class="mb-12 p-4 transition duration-300 hover:scale-105 md:w-1/2">
               <a href="http://sistem-pencarian-terjemahan.herokuapp.com/" target="_blank">
-                <div class="rounded-md shadow-md overflow-hidden">
+                <div class="overflow-hidden rounded-md shadow-md">
                   <img src="dist/img/Portfolio/sistempencarian.jpg" alt="" width="w-full" />
                 </div>
-                <h3 class="font-semibold text-xl text-dark mt-5 mb-3 hover:text-primary">Sistem Pencarian Terjemahan Al-Qur'an</h3>
+                <h3 class="mt-5 mb-3 text-xl font-semibold text-dark hover:text-primary dark:text-white">Sistem Pencarian Terjemahan Al-Qur'an</h3>
               </a>
-              <p class="font-medium text-base text-secondary">
+              <p class="text-base font-medium text-secondary">
                 Proyek skripsi berupa website untuk mencari suatu kata yang terdapat pada terjemahan Al-Qur'an dengan input berupa sinyal suara dan transkripsi suara menggunakan <i>voice recognition</i>.
               </p>
             </div>
 
-            <div class="mb-12 p-4 md:w-1/2 hover:scale-105 transition duration-300">
+            <div class="mb-12 p-4 transition duration-300 hover:scale-105 md:w-1/2">
               <a href="https://nanoland.id/nanotown2" target="_blank">
-                <div class="rounded-md shadow-md overflow-hidden">
+                <div class="overflow-hidden rounded-md shadow-md">
                   <img src="dist/img/Portfolio/nanotown2.jpg" alt="" width="w-full" />
                 </div>
-                <h3 class="font-semibold text-xl text-dark mt-5 mb-3 hover:text-primary">Nano Town 2 Landing Page</h3>
+                <h3 class="mt-5 mb-3 text-xl font-semibold text-dark hover:text-primary dark:text-white">Nano Town 2 Landing Page</h3>
               </a>
-              <p class="font-medium text-base text-secondary">Landing page untuk Nano Town 2, proyek cluster ke-2 dari Nanoland.</p>
+              <p class="text-base font-medium text-secondary">Landing page untuk Nano Town 2, proyek cluster ke-2 dari Nanoland.</p>
             </div>
 
-            <div class="mb-12 p-4 md:w-1/2 hover:scale-105 transition duration-300">
+            <div class="mb-12 p-4 transition duration-300 hover:scale-105 md:w-1/2">
               <a href="https://biroelangit.or.id" target="_blank">
-                <div class="rounded-md shadow-md overflow-hidden">
+                <div class="overflow-hidden rounded-md shadow-md">
                   <img src="dist/img/Portfolio/BLP.jpg" alt="" width="w-full" />
                 </div>
-                <h3 class="font-semibold text-xl text-dark mt-5 mb-3 hover:text-primary">Biroe Langit Perkasa Landing Page</h3>
+                <h3 class="mt-5 mb-3 text-xl font-semibold text-dark hover:text-primary dark:text-white">Biroe Langit Perkasa Landing Page</h3>
               </a>
-              <p class="font-medium text-base text-secondary">Landing page untuk BLP, fokus ke mobile version (desktop version seadanya...)</p>
+              <p class="text-base font-medium text-secondary">Landing page untuk BLP, fokus ke mobile version (desktop version seadanya...)</p>
             </div>
 
-            <div class="mb-12 p-4 md:w-1/2 hover:scale-105 transition duration-300">
+            <div class="mb-12 p-4 transition duration-300 hover:scale-105 md:w-1/2">
               <a href="https://www.nanoland.id/thorium" target="_blank">
-                <div class="rounded-md shadow-md overflow-hidden">
+                <div class="overflow-hidden rounded-md shadow-md">
                   <img src="dist/img/Portfolio/thoriumresidence.jpg " alt="" width="w-full" />
                 </div>
-                <h3 class="font-semibold text-xl text-dark mt-5 mb-3 hover:text-primary">Thorium Residence Landing Page</h3>
+                <h3 class="mt-5 mb-3 text-xl font-semibold text-dark hover:text-primary dark:text-white">Thorium Residence Landing Page</h3>
               </a>
-              <p class="font-medium text-base text-secondary">Landing page untuk Thorium Residence, proyek cluster ke-3 setelah Nano Town 2.</p>
+              <p class="text-base font-medium text-secondary">Landing page untuk Thorium Residence, proyek cluster ke-3 setelah Nano Town 2.</p>
             </div>
 
-            <div class="mb-12 p-4 md:w-1/2 hover:scale-105 transition duration-300">
+            <div class="mb-12 p-4 transition duration-300 hover:scale-105 md:w-1/2">
               <a href="http://aseanplumbingapspsc.pnj.ac.id/" target="_blank">
-                <div class="rounded-md shadow-md overflow-hidden">
+                <div class="overflow-hidden rounded-md shadow-md">
                   <img src="dist/img/Portfolio/apspsc2021.jpg" alt="" width="w-full" />
                 </div>
-                <h3 class="font-semibold text-xl text-dark mt-5 mb-3 hover:text-primary">ASEAN Polytechnic Students Plumbing Skill Competition 2021</h3>
+                <h3 class="mt-5 mb-3 text-xl font-semibold text-dark hover:text-primary dark:text-white">ASEAN Polytechnic Students Plumbing Skill Competition 2021</h3>
               </a>
-              <p class="font-medium text-base text-secondary">Landing page untuk ASEAN Polytechnic Students Plumbing Skill Competition 2021 atau APSPSC 2021, kompetisi plumbing yang diadakan oleh PNJ (Polteknik Negeri Jakarta).</p>
+              <p class="text-base font-medium text-secondary">Landing page untuk ASEAN Polytechnic Students Plumbing Skill Competition 2021 atau APSPSC 2021, kompetisi plumbing yang diadakan oleh PNJ (Polteknik Negeri Jakarta).</p>
             </div>
           </div>
         </div>
@@ -276,25 +304,25 @@
     <!-- End of Portfolio Section -->
 
     <!-- Clients Section -->
-    <section id="clients" class="pt-36 pb-32 bg-slate-900">
+    <section id="clients" class="bg-slate-900 pt-36 pb-32 dark:bg-slate-300">
       <div class="container">
         <div class="w-full px-4">
-          <div class="max-w-xl mx-auto text-center mb-16">
-            <h4 class="font-semibold text-lg text-primary mb-2">Clients</h4>
-            <h2 class="font-bold text-white text-3xl mb-4 sm:text-4xl lg:text-5xl">Clients I've Worked With</h2>
-            <p class="font-medium text-md text-secondary md:text-lg">Here are some of the clients I've worked with.</p>
+          <div class="mx-auto mb-16 max-w-xl text-center">
+            <h4 class="mb-2 text-lg font-semibold text-primary">Clients</h4>
+            <h2 class="mb-4 text-3xl font-bold text-white dark:text-dark sm:text-4xl lg:text-5xl">Clients I've Worked With</h2>
+            <p class="text-md font-medium text-secondary md:text-lg">Here are some of the clients I've worked with.</p>
           </div>
         </div>
 
         <div class="w-full px-4">
           <div class="flex flex-wrap items-center justify-center">
-            <a class="max-w-[120px] mx-4 py-4 grayscale opacity-60 transition duration-500 hover:grayscale-0 hover:opacity-100 lg:mx-6 xl:mx-8 hover:scale-110">
+            <a class="mx-4 max-w-[120px] py-4 opacity-60 grayscale transition duration-500 hover:scale-110 hover:opacity-100 hover:grayscale-0 lg:mx-6 xl:mx-8">
               <img src="dist/img/Clients/NANOLAND.png" alt="" />
             </a>
-            <a class="max-w-[120px] mx-4 py-4 grayscale opacity-60 transition duration-500 hover:grayscale-0 hover:opacity-100 lg:mx-6 xl:mx-8 hover:scale-110">
+            <a class="mx-4 max-w-[120px] py-4 opacity-60 grayscale transition duration-500 hover:scale-110 hover:opacity-100 hover:grayscale-0 lg:mx-6 xl:mx-8">
               <img src="dist/img/Clients/BLP.png" alt="" />
             </a>
-            <a class="max-w-[120px] mx-4 py-4 grayscale opacity-60 transition duration-500 hover:grayscale-0 hover:opacity-100 lg:mx-6 xl:mx-8 hover:scale-110">
+            <a class="mx-4 max-w-[120px] py-4 opacity-60 grayscale transition duration-500 hover:scale-110 hover:opacity-100 hover:grayscale-0 lg:mx-6 xl:mx-8">
               <img src="dist/img/Clients/NanoCenterIndonesia.png" alt="" />
             </a>
           </div>
@@ -304,24 +332,24 @@
     <!-- End of Clients Section -->
 
     <!-- Blog Section -->
-    <section id="blog" class="pt-36 pb-32 bg-slate-200">
+    <section id="blog" class="bg-slate-200 pt-36 pb-32 dark:bg-slate-900">
       <div class="container">
         <div class="w-full px-4">
-          <div class="max-w-xl mx-auto text-center mb-16">
-            <h4 class="font-semibold text-lg text-primary mb-2">Blog</h4>
-            <h2 class="font-bold text-dark text-3xl mb-4 sm:text-4xl lg:text-5xl">My Blog or Hobby or Sumthin</h2>
-            <p class="font-medium text-md text-secondary md:text-lg">IDK, random things.</p>
+          <div class="mx-auto mb-16 max-w-xl text-center">
+            <h4 class="mb-2 text-lg font-semibold text-primary">Blog</h4>
+            <h2 class="mb-4 text-3xl font-bold text-dark dark:text-white sm:text-4xl lg:text-5xl">My Blog or Hobby or Sumthin</h2>
+            <p class="text-md font-medium text-secondary md:text-lg">IDK, random things.</p>
           </div>
         </div>
 
         <div class="flex flex-wrap justify-center">
           <!-- BLOG CONTENT START -->
           <div class="w-full px-4 lg:w-1/2">
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10">
+            <div class="mb-10 overflow-hidden rounded-xl bg-white shadow-lg dark:bg-slate-800">
               <img src="dist/img/Blog/NewKeebs.jpeg" alt="" class="w-full" />
               <div class="py-8 px-6">
-                <h3><a href="#blog" class="block mb-3 font-semibold text-xl text-dark hover:text-primary transition duration-300 truncate">My New Keeeeebss!!!</a></h3>
-                <p class="font-medium text-base text-secondary mb-4">
+                <h3><a href="#blog" class="mb-3 block truncate text-xl font-semibold text-dark transition duration-300 hover:text-primary dark:text-white">My New Keeeeebss!!!</a></h3>
+                <p class="mb-4 text-base font-medium text-secondary">
                   <b>Keeboard:</b> Rexus Daiva 68SF <br />
                   <b>Switches:</b> Everglide Aqua King v3 - 62g, Gateron Yellow <br />
                   <b>Keycaps:</b> Japan Honey and Milk Theme - XDA Profile <br />
@@ -330,45 +358,45 @@
                     <source src="dist/audio/newkeebsound.mp3" type="audio/mpeg" />
                   </audio>
                 </p>
-                <a href="#blog" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-md hover:opacity-80 transition duration-300">Read More</a>
+                <a href="#blog" class="rounded-md bg-primary py-2 px-4 text-sm font-medium text-white transition duration-300 hover:opacity-80">Read More</a>
               </div>
             </div>
           </div>
 
           <div class="w-full px-4 lg:w-1/2">
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10">
+            <div class="mb-10 overflow-hidden rounded-xl bg-white shadow-lg dark:bg-slate-800">
               <img src="dist/img/Blog/valorant.jpg" alt="" class="w-full" />
               <div class="py-8 px-6">
-                <h3><a href="#blog" class="block mb-3 font-semibold text-xl text-dark hover:text-primary transition duration-300 truncate">Valorant</a></h3>
-                <p class="font-medium text-base text-secondary mb-4">My skin collection in the game, mostly from battlepass. I love💕 Reaver! (especially the karambit)</p>
-                <a href="dist/img/Blog/valorant.jpg" target="_blank" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-md hover:opacity-80 transition duration-300">Read More</a>
+                <h3><a href="#blog" class="mb-3 block truncate text-xl font-semibold text-dark transition duration-300 hover:text-primary dark:text-white">Valorant</a></h3>
+                <p class="mb-4 text-base font-medium text-secondary">My skin collection in the game, mostly from battlepass. I love💕 Reaver! (especially the karambit)</p>
+                <a href="dist/img/Blog/valorant.jpg" target="_blank" class="rounded-md bg-primary py-2 px-4 text-sm font-medium text-white transition duration-300 hover:opacity-80">Read More</a>
               </div>
             </div>
           </div>
 
           <div class="w-full px-4 lg:w-1/2">
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10">
+            <div class="mb-10 overflow-hidden rounded-xl bg-white shadow-lg dark:bg-slate-800">
               <img src="https://source.unsplash.com/720x400?computer" alt="" class="w-full" />
               <div class="py-8 px-6">
-                <h3><a href="#blog" class="block mb-3 font-semibold text-xl text-dark hover:text-primary transition duration-300 truncate">PC Specs</a></h3>
-                <p class="font-medium text-base text-secondary mb-4">
+                <h3><a href="#blog" class="mb-3 block truncate text-xl font-semibold text-dark transition duration-300 hover:text-primary dark:text-white">PC Specs</a></h3>
+                <p class="mb-4 text-base font-medium text-secondary">
                   <b>CPU:</b> AMD Ryzen™ 5 2600 Processor<br />
                   <b>GPU:</b> PowerColor Radeon RX580 Red Devil 8GB<br />
                   <b>RAM:</b> Team Elite Plus 4x4GB (16GB) DDR4 2400MHz <br />
                   <b>Storage:</b> NVMe SSD 256GB, SSD 240GB, HDD 500GB, 2xHDD 1TB <br />
                   <b>Monitor:</b> AIRO AIO25G - 165Hz, LG 22MK400H - 75Hz, Samsung S19D300 - 60Hz
                 </p>
-                <a href="#blog" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-md hover:opacity-80 transition duration-300">Read More</a>
+                <a href="#blog" class="rounded-md bg-primary py-2 px-4 text-sm font-medium text-white transition duration-300 hover:opacity-80">Read More</a>
               </div>
             </div>
           </div>
 
           <div class="w-full px-4 lg:w-1/2">
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10">
+            <div class="mb-10 overflow-hidden rounded-xl bg-white shadow-lg dark:bg-slate-800">
               <img src="dist/img/Blog/Keebs.jpg" alt="" class="w-full" />
               <div class="py-8 px-6">
-                <h3><a href="#blog" class="block mb-3 font-semibold text-xl text-dark hover:text-primary transition duration-300 truncate">Peripheral</a></h3>
-                <p class="font-medium text-base text-secondary mb-4">
+                <h3><a href="#blog" class="mb-3 block truncate text-xl font-semibold text-dark transition duration-300 hover:text-primary dark:text-white">Peripheral</a></h3>
+                <p class="mb-4 text-base font-medium text-secondary">
                   <b>Keeboard:</b> Fantech Pantheon MK871 <br />
                   <b>Switches:</b> Everglide Aqua King v3 - 62g, Gateron Yellow, and Kailh Brown (stock switch) <br />
                   <b>Keycaps:</b> Japan Honey and Milk Theme - XDA Profile <br />
@@ -377,31 +405,31 @@
                   <b>IEM:</b> Moondrop SSR <br />
                   <b>Microphone:</b> Boya BY-M1 Lavalier - M1
                 </p>
-                <a href="#blog" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-md hover:opacity-80 transition duration-300">Read More</a>
+                <a href="#blog" class="rounded-md bg-primary py-2 px-4 text-sm font-medium text-white transition duration-300 hover:opacity-80">Read More</a>
               </div>
             </div>
           </div>
 
           <div class="w-full px-4 lg:w-1/2">
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10">
+            <div class="mb-10 overflow-hidden rounded-xl bg-white shadow-lg dark:bg-slate-800">
               <img src="https://source.unsplash.com/720x400?coffee" alt="" class="w-full" />
               <div class="py-8 px-6">
-                <h3><a href="#blog" class="block mb-3 font-semibold text-xl text-dark hover:text-primary transition duration-300 truncate">Coffee Caffeine</a></h3>
-                <p class="font-medium text-base text-secondary mb-4">
+                <h3><a href="#blog" class="mb-3 block truncate text-xl font-semibold text-dark transition duration-300 hover:text-primary dark:text-white">Coffee Caffeine</a></h3>
+                <p class="mb-4 text-base font-medium text-secondary">
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius, animi repellendus eveniet explicabo non dolore ab qui, voluptates excepturi consectetur laboriosam labore laudantium.
                 </p>
-                <a href="#blog" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-md hover:opacity-80 transition duration-300">Read More</a>
+                <a href="#blog" class="rounded-md bg-primary py-2 px-4 text-sm font-medium text-white transition duration-300 hover:opacity-80">Read More</a>
               </div>
             </div>
           </div>
 
           <div class="w-full px-4 lg:w-1/2">
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10">
+            <div class="mb-10 overflow-hidden rounded-xl bg-white shadow-lg dark:bg-slate-800">
               <img src="https://source.unsplash.com/720x400?cake" alt="" class="w-full" />
               <div class="py-8 px-6">
-                <h3><a href="#blog" class="block mb-3 font-semibold text-xl text-dark hover:text-primary transition duration-300 truncate">Cake - ケーキ🎂</a></h3>
-                <p class="font-medium text-base text-secondary mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. At, corrupti ipsam.</p>
-                <a href="#blog" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-md hover:opacity-80 transition duration-300">Read More</a>
+                <h3><a href="#blog" class="mb-3 block truncate text-xl font-semibold text-dark transition duration-300 hover:text-primary dark:text-white">Cake - ケーキ🎂</a></h3>
+                <p class="mb-4 text-base font-medium text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. At, corrupti ipsam.</p>
+                <a href="#blog" class="rounded-md bg-primary py-2 px-4 text-sm font-medium text-white transition duration-300 hover:opacity-80">Read More</a>
               </div>
             </div>
           </div>
@@ -411,34 +439,34 @@
     <!-- End of Blog Section -->
 
     <!-- Contact Section -->
-    <section id="contact" class="pt-36 pb-32">
+    <section id="contact" class="pt-36 pb-32 dark:bg-slate-800">
       <div class="container">
         <div class="w-full px-4">
-          <div class="max-w-xl mx-auto text-center mb-16">
-            <h4 class="font-semibold text-lg text-primary mb-2">Contact</h4>
-            <h2 class="font-bold text-dark text-3xl mb-4 sm:text-4xl lg:text-5xl">Send Me a Message💕</h2>
-            <p class="font-medium text-md text-secondary md:text-lg">
-              This section isn't working, sadge<span><img src="https://emoji.gg/assets/emoji/6757_Sadge.png" class="h-[1.5rem] inline" alt="" /></span>
+          <div class="mx-auto mb-16 max-w-xl text-center">
+            <h4 class="mb-2 text-lg font-semibold text-primary">Contact</h4>
+            <h2 class="mb-4 text-3xl font-bold text-dark dark:text-white sm:text-4xl lg:text-5xl">Send Me a Message💕</h2>
+            <p class="text-md font-medium text-secondary md:text-lg">
+              This section isn't working, sadge<span><img src="https://emoji.gg/assets/emoji/6757_Sadge.png" class="inline h-[1.5rem]" alt="sadge emoji" /></span>
             </p>
           </div>
         </div>
 
         <form>
-          <div class="w-full lg:w-2/3 lg:mx-auto">
-            <div class="w-full px-4 mb-8">
+          <div class="w-full lg:mx-auto lg:w-2/3">
+            <div class="mb-8 w-full px-4">
               <label for="name" class="text-base font-bold text-primary">Name</label>
-              <input type="text" id="name" class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary" />
+              <input type="text" id="name" class="w-full rounded-md bg-slate-200 p-3 text-dark focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" />
             </div>
-            <div class="w-full px-4 mb-8">
+            <div class="mb-8 w-full px-4">
               <label for="email" class="text-base font-bold text-primary">Email</label>
-              <input type="email" id="email" class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary" />
+              <input type="email" id="email" class="w-full rounded-md bg-slate-200 p-3 text-dark focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" />
             </div>
-            <div class="w-full px-4 mb-8">
+            <div class="mb-8 w-full px-4">
               <label for="name" class="text-base font-bold text-primary">Message💕</label>
-              <textarea type="text" id="name" class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary h-32"></textarea>
+              <textarea type="text" id="name" class="h-32 w-full rounded-md bg-slate-200 p-3 text-dark focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"></textarea>
             </div>
-            <div class="w-full px-4 lg:w-1/3 mx-auto">
-              <button class="text-base font-semibold text-white bg-primary py-3 px-8 rounded-full w-full hover:opacity-80 hover:shadow-lg transition duration-500">Send💕</button>
+            <div class="mx-auto w-full px-4 lg:w-1/3">
+              <button class="w-full rounded-full bg-primary py-3 px-8 text-base font-semibold text-white transition duration-500 hover:opacity-80 hover:shadow-lg">Send💕</button>
             </div>
           </div>
         </form>
@@ -447,63 +475,63 @@
     <!-- End of Contact Section -->
 
     <!-- Footer -->
-    <footer class="bg-slate-800 pt-24 pb-12">
+    <footer class="bg-slate-900 pt-24 pb-12">
       <div class="container">
         <div class="flex flex-wrap">
-          <div class="w-full px-4 mb-12 text-slate-300 font-medium md:w-1/3">
-            <h2 class="font-bold text-4xl text-white mb-5">MIF</h2>
-            <h3 class="font bold text-2xl mb-2">Contact Us</h3>
+          <div class="mb-12 w-full px-4 font-medium text-slate-300 md:w-1/3">
+            <h2 class="mb-5 text-4xl font-bold text-white">MIF</h2>
+            <h3 class="font bold mb-2 text-2xl">Contact Us</h3>
             <p>vannani17@gmail.com</p>
             <p>Serpong, Tangerang Selatan</p>
           </div>
 
-          <div class="w-full px-4 mb-12 md:w-1/3">
-            <h3 class="font-semibold text-xl text-white mb-5">Category</h3>
+          <div class="mb-12 w-full px-4 md:w-1/3">
+            <h3 class="mb-5 text-xl font-semibold text-white">Category</h3>
             <ul class="text-slate-300">
               <li>
-                <a href="#blog" class="inline-block text-base hover:text-primary transition duration-300 mb-3">Valorant</a>
+                <a href="#blog" class="mb-3 inline-block text-base transition duration-300 hover:text-primary">Valorant</a>
               </li>
               <li>
-                <a href="#blog" class="inline-block text-base hover:text-primary transition duration-300 mb-3">Hobby</a>
+                <a href="#blog" class="mb-3 inline-block text-base transition duration-300 hover:text-primary">Hobby</a>
               </li>
               <li>
-                <a href="#blog" class="inline-block text-base hover:text-primary transition duration-300 mb-3">Coffee</a>
+                <a href="#blog" class="mb-3 inline-block text-base transition duration-300 hover:text-primary">Coffee</a>
               </li>
               <li>
-                <a href="#blog" class="inline-block text-base hover:text-primary transition duration-300 mb-3">Cake</a>
+                <a href="#blog" class="mb-3 inline-block text-base transition duration-300 hover:text-primary">Cake</a>
               </li>
             </ul>
           </div>
 
-          <div class="w-full px-4 mb-12 md:w-1/3">
-            <h3 class="font-semibold text-xl text-white mb-5">Link</h3>
+          <div class="mb-12 w-full px-4 md:w-1/3">
+            <h3 class="mb-5 text-xl font-semibold text-white">Link</h3>
             <ul class="text-slate-300">
               <li>
-                <a href="#home" class="inline-block text-base hover:text-primary transition duration-300 mb-3">Home</a>
+                <a href="#home" class="mb-3 inline-block text-base transition duration-300 hover:text-primary">Home</a>
               </li>
               <li>
-                <a href="#about" class="inline-block text-base hover:text-primary transition duration-300 mb-3">About Me</a>
+                <a href="#about" class="mb-3 inline-block text-base transition duration-300 hover:text-primary">About Me</a>
               </li>
               <li>
-                <a href="#portfolio" class="inline-block text-base hover:text-primary transition duration-300 mb-3">Portfolio</a>
+                <a href="#portfolio" class="mb-3 inline-block text-base transition duration-300 hover:text-primary">Portfolio</a>
               </li>
               <li>
-                <a href="#clients" class="inline-block text-base hover:text-primary transition duration-300 mb-3">Clients</a>
+                <a href="#clients" class="mb-3 inline-block text-base transition duration-300 hover:text-primary">Clients</a>
               </li>
               <li>
-                <a href="#blog" class="inline-block text-base hover:text-primary transition duration-300 mb-3">Blog</a>
+                <a href="#blog" class="mb-3 inline-block text-base transition duration-300 hover:text-primary">Blog</a>
               </li>
               <li>
-                <a href="#contact" class="inline-block text-base hover:text-primary transition duration-300 mb-3">Contact</a>
+                <a href="#contact" class="mb-3 inline-block text-base transition duration-300 hover:text-primary">Contact</a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div class="w-full pt-10 border-t border-slate-500">
-          <div class="flex items-center justify-center mb-5">
+        <div class="w-full border-t border-slate-500 pt-10">
+          <div class="mb-5 flex items-center justify-center">
             <!-- Youtube -->
-            <a href="https://youtube.com" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 hover:border-primary hover:bg-primary hover:text-white text-slate-300">
+            <a href="https://youtube.com" target="_blank" class="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white">
               <svg role="img" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current">
                 <title>YouTube</title>
                 <path
@@ -513,7 +541,7 @@
             </a>
 
             <!-- Instagram -->
-            <a href="https://instagram.com/sleepisfun17" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 hover:border-primary hover:bg-primary hover:text-white text-slate-300">
+            <a href="https://instagram.com/sleepisfun17" target="_blank" class="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white">
               <svg role="img" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current">
                 <title>Instagram</title>
                 <path
@@ -523,7 +551,7 @@
             </a>
 
             <!-- Twitter -->
-            <a href="https://twitter.com/sleepisfun17" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 hover:border-primary hover:bg-primary hover:text-white text-slate-300">
+            <a href="https://twitter.com/sleepisfun17" target="_blank" class="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white">
               <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" class="fill-current">
                 <title>Twitter</title>
                 <path
@@ -533,7 +561,7 @@
             </a>
 
             <!-- Discord -->
-            <a href="https://discord.com" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 hover:border-primary hover:bg-primary hover:text-white text-slate-300">
+            <a href="https://discord.com" target="_blank" class="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white">
               <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" class="fill-current">
                 <title>Discord</title>
                 <path
@@ -546,7 +574,7 @@
             <a
               href="https://www.linkedin.com/in/mirfanfanani/"
               target="_blank"
-              class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 hover:border-primary hover:bg-primary hover:text-white text-slate-300"
+              class="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white"
             >
               <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" class="fill-current">
                 <title>LinkedIn</title>
@@ -560,7 +588,7 @@
             <a
               href="https://steamcommunity.com/id/sleepisfun17/"
               target="_blank"
-              class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 hover:border-primary hover:bg-primary hover:text-white text-slate-300"
+              class="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white"
             >
               <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" class="fill-current">
                 <title>Steam</title>
@@ -570,7 +598,7 @@
               </svg>
             </a>
           </div>
-          <p class="font-medium text-xs text-slate-500 text-center">
+          <p class="text-center text-xs font-medium text-slate-500">
             Created with <span class="text-primary">💕</span> by <a href="https://instagram.com/sleepisfun17" target="_blank" class="font-bold text-primary">M Irfan Fanani</a>, using
             <a href="https://tailwindcss.com" target="_blank" class="text-sky-500">Tailwind CSS</a>.
           </p>
@@ -580,5 +608,45 @@
     <!-- End of Footer -->
 
     <script src="dist/js/script.js"></script>
+    <script>
+      var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+      var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+      // Change the icons inside the button based on previous settings
+      if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        themeToggleLightIcon.classList.remove('hidden');
+      } else {
+        themeToggleDarkIcon.classList.remove('hidden');
+      }
+
+      var themeToggleBtn = document.getElementById('theme-toggle');
+
+      themeToggleBtn.addEventListener('click', function () {
+        // toggle icons inside button
+        themeToggleDarkIcon.classList.toggle('hidden');
+        themeToggleLightIcon.classList.toggle('hidden');
+
+        // if set via local storage previously
+        if (localStorage.getItem('color-theme')) {
+          if (localStorage.getItem('color-theme') === 'light') {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+          }
+
+          // if NOT set via local storage previously
+        } else {
+          if (document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+          } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+          }
+        }
+      });
+    </script>
   </body>
 </html>
